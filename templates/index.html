@@ -6,10 +6,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style></style>
+    <link href="https://fonts.googleapis.com/css2?family=Ranchers&display=swap" rel="stylesheet">
+    <style>body{
+        background: linear-gradient(rgb(11, 165, 158), white);min-height: 100vh;;
+        display: flex;justify-content: center; align-items: center;text-align: center;  flex-direction: column;
+        }
+    </style>
+
 </head>
-<body style="background-color:rgb(11, 165, 158);">
-    <h1 style="color:rgb(11, 165, 158); background-color: black;" >WELCOME WORLD COUNTRY DATA</h1>
+<body>
+    <h1 style="color:rgb(11, 165, 158); background-color: white;font-family: 'Ranchers', cursive;" >WELCOME WORLD COUNTRY DATA</h1>
    <form action="/" method="POST">
         <label>
             <select name="country" id="country">
@@ -18,9 +24,11 @@
                 {% endfor %}
             </select>
         </label>
-        <input style="color:rgb(11, 165, 158);background-color: black;"  type="submit" value="GET DATA">
-   </form>
-
+        <input style="color:rgb(11, 165, 158);background-color: white; font-weight: bold;"  type="submit" value="GET DATA">
+   </form><br>
+   <a href="./pagina2">
+    <button style="color:rgb(11, 165, 158);background-color: white; font-weight: bold;">PAGINA 2</button>
+   </a>
    {% if countryData %}
         <table>
         {% for clave,valor in countryData.items() %}

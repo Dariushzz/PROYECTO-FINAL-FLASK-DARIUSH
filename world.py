@@ -12,13 +12,43 @@ def buildCountryList():
         infoPais = registro.split(',')
         pais = {}
         for columna,dato in zip(columnas,infoPais):
-            pais[columna] = dato
+            dato = dato.strip()
+             
+            if columna=='GDP':
+                dato = dato.replace("$","")
+
+                if (dato==""):
+                    dato = 0
+                else:
+                    dato=int(dato)
+
+            elif columna=='Population':
+                if (dato==""):
+                    dato = 0
+                else:
+                    dato=int(dato)
+
+            elif columna=='Life expectancy':
+                if (dato==""):
+                    dato = 0
+                else:
+                    dato=float(dato)
+
+            elif columna=='Land Area(Km2)':
+                if (dato==""):
+                    dato = 0
+                else:
+                    dato=int(dato)
+
+            pais[columna]=dato
         countryData.append(pais)
     
     return countryData
 
-countryData = buildCountryList()
+# result = buildCountryList()
+# print(result)
 
+countryData = buildCountryList()
 
 def getCountryData(country):
     paises = buildCountryList()
@@ -35,4 +65,28 @@ def getCountryNames():
     for pais in paises:
         nombrePaises.append(pais["Country"])
     return nombrePaises
+
+
+
+    
+
+def filtrarPaises(variable, min_value, max_value):
+    paises = buildCountryList()
+    PaisesAMostrar= []
+    mensajeError = "ERROR: mínimo mayor que máximo"
+
+    min_value=float(min_value)
+    max_value=float(max_value)
+
+    if min_value < max_value:
+
+        for pais in paises:
+            if pais[variable] >= min_value and pais[variable]<= max_value:
+                PaisesAMostrar.append(pais["Country"])
+        return PaisesAMostrar
+    
+    else: return mensajeError
+
+    
+# print(filtrarPaises('Population',1366417752, 1366417754))
 

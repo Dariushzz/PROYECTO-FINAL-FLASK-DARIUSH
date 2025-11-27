@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ranchers&display=swap" rel="stylesheet">
+    <style>
+            body {
+                background: linear-gradient(rgb(11, 165, 158), black);min-height: 100vh;;
+                display: flex; justify-content: center;align-items: center;
+                text-align: center;flex-direction: column;
+            }
+            h2{
+                color: rgb(11, 165, 158);background-color: black;
+                font-family: 'Ranchers', cursive;
+            }
+    </style>
+</head>
+<body>
+    <form action="/pagina2" method="POST">
+        <label><h2 style="font-family: 'Ranchers', cursive;color: rgb(11, 165, 158);background-color: black;">SELECCIONA UN FILTRO</h2>
+            <select name="opcionesVariables" id="opcionesVariables">
+                {% for opcion in listaOpciones %}
+                <option value="{{ opcion }}">{{ opcion }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        
+        <br>
+        <label>
+            <h2>MÍNIMO</h2>
+            <input type="number" name="min_value" required>
+        </label>
+
+        <label>
+            <h2>MÁXIMO</h2>
+            <input type="number" name="max_value" required>
+        </label><br><br>
+        <input type="submit" style="color: rgb(11, 165, 158);background-color: black; font-weight: bold;">
+
+        <br><br>
+
+        {% if paisesQueCumplen is not none %}
+        
+        {% if paisesQueCumplen is string %}
+        <p style="color:red;">{{ paisesQueCumplen }}</p>
+        
+        {% else %}
+        <h2>Países que cumplen:</h2>
+        <ul style="color: rgb(11, 165, 158);background-color: black;">
+            {% for pais in paisesQueCumplen %}
+            <li style="color: rgb(11, 165, 158);background-color: black;">{{ pais }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        
+        {% endif %}
+    </form>
+</body>
+</html>
